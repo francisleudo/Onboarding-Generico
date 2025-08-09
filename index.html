@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo(a) à Empresa!</title>
+    <!-- Tailwind CSS CDN para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter como padrão para o corpo da página */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Fundo cinza mais claro para um visual mais limpo */
+            color: #343a40; /* Texto mais escuro para melhor legibilidade */
+            line-height: 1.6; /* Espaçamento de linha aprimorado */
+        }
+        /* Estilos para o contêiner principal para centralizar e limitar a largura */
+        .container {
+            max-width: 1024px; /* Contêiner ligeiramente mais largo para mais espaço */
+            padding-left: 1.5rem; /* px-6 */
+            padding-right: 1.5rem; /* px-6 */
+        }
+        /* Estilo para a barra de carregamento (indicador visual) */
+        #loading-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo mais opaco */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb; /* Cor azul para o indicador */
+        }
+        /* Estilo básico do botão */
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out;
+        }
+        /* Estilo para cartões de conteúdo - mais preenchimento e sombra, margem inferior generosa */
+        .card {
+            background-color: #ffffff;
+            padding: 2.5rem; /* Preenchimento aumentado */
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* Sombra mais forte e suave */
+            margin-bottom: 3rem; /* Equivalente a mb-12, ajustado */
+            border: 1px solid #e2e8f0; /* Borda sutil para definição */
+        }
+        /* Estilo para a caixa de mensagem personalizada */
+        #custom-message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            z-index: 1001;
+            display: none; /* Oculto por padrão */
+            text-align: center;
+            max-width: 90%;
+            color: #333;
+        }
+        #custom-message-box button {
+            @apply mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg;
+        }
+        /* Estilização específica do cabeçalho para melhor contraste e apelo visual */
+        .header-section {
+            background: linear-gradient(to right, #3b82f6, #2563eb); /* Gradiente azul */
+            color: white;
+            padding: 4rem 1.5rem; /* Preenchimento aumentado */
+            border-radius: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            margin-bottom: 3rem; /* Corresponde à margem inferior do cartão */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .header-section h1 {
+            font-size: 3.5rem; /* Título maior */
+            line-height: 1.2;
+            font-weight: 800; /* Extra bold */
+        }
+        .header-section p {
+            font-size: 1.5rem; /* Subtítulo maior */
+            font-weight: 300; /* Leve */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+
+    <!-- Indicador de carregamento -->
+    <div id="loading-indicator">Carregando...</div>
+
+    <!-- Caixa de mensagem personalizada (substitui alert/confirm) -->
+    <div id="custom-message-box">
+        <p id="message-text" class="text-xl font-medium mb-4"></p>
+        <button id="message-ok-button">OK</button>
+    </div>
+
+    <!-- Conteúdo principal da página -->
+    <div class="container mx-auto py-8 mt-10 sm:mt-16 lg:mt-20">
+
+        <!-- Seção de Cabeçalho/Boas-vindas -->
+        <header class="text-center header-section">
+            <h1 class="mb-4">Bem-vindo(a) à <span class="text-white">Empresa!</span></h1>
+            <p class="mb-6">Sua jornada no futuro da inovação começa aqui.</p>
+            <!-- Substituí a imagem do logo por um espaço genérico. Você pode adicionar um logo aqui se tiver um. -->
+            <img src="LOGO.png" alt="Logotipo" class="mx-auto mt-8 w-48 h-48 object-contain rounded-full shadow-lg border-4 border-white">
+
+        </header>
+
+        <!-- Seção Sobre a Empresa e Segmento -->
+        <section id="sobre" class="card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Quem Somos e o que Fazemos</h2>
+            <p class="mb-6 text-gray-700 leading-relaxed">
+                A <strong>Empresa</strong> é uma organização focada em <strong class="text-blue-600">tecnologia e serviços</strong>, atuando como um pilar de inovação em <strong class="text-blue-600">sua região de atuação</strong>. Desde <strong class="text-blue-600">sua fundação</strong>, temos o compromisso de entregar soluções de alta qualidade, estabilidade e valor para nossos clientes e parceiros.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Nossa Missão</h3>
+                    <p class="text-gray-700">Conectar pessoas e empresas com a mais alta qualidade, estabilidade e valor, impulsionando seu desenvolvimento e acesso à informação e soluções.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Nossa Visão</h3>
+                    <p class="text-gray-700">Ser a principal referência em nosso segmento, inovando constantemente e superando as expectativas de todos os nossos clientes e parceiros.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Nossos Valores</h3>
+                    <ul class="list-disc list-inside text-gray-700 pl-4">
+                        <li><strong>Qualidade:</strong> Em nossos serviços e atendimento.</li>
+                        <li><strong>Inovação:</strong> Buscando sempre as melhores abordagens.</li>
+                        <li><strong>Confiança:</strong> Construindo relacionamentos sólidos e transparentes.</li>
+                        <li><strong>Foco no Cliente:</strong> A satisfação do cliente é a nossa prioridade.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Nosso Segmento</h3>
+                    <p class="text-gray-700">Atuamos no vibrante mercado de <strong class="text-blue-600">tecnologia e serviços</strong>, garantindo soluções eficazes e confiáveis para o dia a dia e para os negócios.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Nossa História -->
+        <section id="historia" class="card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Nossa Trajetória: Crescendo com a região</h2>
+            <p class="mb-6 text-gray-700 leading-relaxed">
+                Desde a sua fundação, a Empresa iniciou suas operações com uma visão clara: transformar a maneira como as pessoas e empresas interagem com as soluções disponíveis em sua região. Desde o início, nosso compromisso foi com a qualidade e a inovação.
+            </p>
+            <p class="mb-6 text-gray-700 leading-relaxed">
+                Ao longo dos anos, investimos massivamente em desenvolvimento e aprimoramento contínuo, o que nos permitiu expandir rapidamente nossa área de atuação e consolidar nossa posição. Hoje, somos sinônimo de excelência e confiabilidade, servindo milhares de lares e empresas com a paixão por inovar que nos impulsiona desde o primeiro dia. Continuamos a crescer, sempre buscando as melhores soluções para o mercado e para você!
+            </p>
+        </section>
+
+        <!-- Seção Alinhamento e Cultura -->
+        <section id="cultura" class="card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Nossa Cultura e o que Esperamos de Você</h2>
+            <p class="mb-6 text-gray-700 leading-relaxed">
+                Na Empresa, construímos um ambiente que valoriza o <strong>aprendizado contínuo</strong>, a <strong>colaboração efetiva</strong> e a <strong>inovação constante</strong>. Acreditamos que o sucesso da empresa é o reflexo do desenvolvimento e da paixão de cada membro da nossa equipe.
+            </p>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-3">O que buscamos em nossos colaboradores:</h3>
+            <ul class="list-disc list-inside text-gray-700 mb-6 pl-4">
+                <li><strong>Proatividade:</strong> Não espere, faça acontecer! Tome a iniciativa e busque soluções inovadoras.</li>
+                <li><strong>Curiosidade:</strong> Mantenha a mente aberta, questione e esteja sempre disposto(a) a aprender algo novo.</li>
+                <li><strong>Colaboração:</strong> Trabalhe em equipe, valorizando as diferentes perspectivas e construindo juntos.</li>
+                <li><strong>Compromisso:</strong> Dedique-se aos objetivos da empresa, à qualidade do seu trabalho e à satisfação do cliente.</li>
+                <li><strong>Respeito:</strong> Promova um ambiente de trabalho harmonioso, inclusivo e de respeito mútuo.</li>
+            </ul>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-3">Nosso Alinhamento Estratégico:</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Apostamos na comunicação clara e transparente em todos os níveis, na busca incessante pela excelência em cada serviço que entregamos e na inovação contínua para superar as expectativas dos nossos clientes e do mercado. Sua contribuição é fundamental para mantermos a Empresa na vanguarda da tecnologia!
+            </p>
+        </section>
+
+        <!-- Seção Estrutura Hierárquica -->
+        <section id="hierarquia" class="card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Nosso Time e Estrutura Organizacional</h2>
+            <p class="mb-6 text-gray-700 leading-relaxed">
+                Para garantir a eficiência e o crescimento contínuo da Empresa, contamos com uma estrutura organizacional clara e colaborativa. Cada nível é fundamental para o sucesso da nossa operação:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Diretoria</h3>
+                    <p class="text-gray-700 text-sm">Define a visão, a estratégia de longo prazo e as grandes decisões que guiam a empresa.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Gerência</h3>
+                    <p class="text-700 text-sm">Lidera os departamentos, gerencia equipes e projetos, e garante que os objetivos estratégicos sejam atingidos.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Coordenação/Supervisão</h3>
+                    <p class="text-gray-700 text-sm">Responsável pelas operações diárias, acompanhamento da performance da equipe e solução de desafios operacionais.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Analistas/Assistentes</h3>
+                    <p class="text-gray-700 text-sm">Executam as tarefas operacionais e estratégicas, oferecendo suporte crucial e expertise em suas áreas.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Colaboradores/Estagiários</h3>
+                    <p class="text-gray-700 text-sm">Você! Apoia as equipes, aprende com os processos, contribui com novas ideias e se prepara para os desafios do mercado de trabalho.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Treinamento e Desenvolvimento -->
+        <section id="treinamento" class="card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Seu Treinamento e Desenvolvimento na Empresa</h2>
+            <p class="mb-6 text-gray-700 leading-relaxed">
+                Seu período na Empresa é uma jornada de aprendizado e imersão completa em diversas áreas e tecnologias essenciais do nosso negócio. Preparamos um plano robusto para você!
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700 mb-4">1. Introdução a Sistemas e Setores Chave:</h3>
+            <ul class="list-disc list-inside text-gray-700 mb-6 ml-6 space-y-2">
+                <li><strong>Sistemas Fundamentais:</strong> Você será introduzido a sistemas cruciais para a gestão e operação da Empresa.</li>
+                <li><strong>Imersão em Setores:</strong> Conhecerá de perto o funcionamento da <strong>T.I.</strong>, <strong>Atendimento ao Cliente</strong>, <strong>Logística/Estoque</strong>, <strong>Administrativo/Financeiro</strong> e <strong>Suporte Operacional</strong>, entendendo a interconexão de nossas áreas.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-blue-700 mb-4">2. Noções Essenciais de Tecnologia e Operação:</h3>
+            <ul class="list-disc list-inside text-gray-700 mb-6 ml-6 space-y-2">
+                <li><strong>Sistemas Operacionais e Software:</strong> Compreensão de como funcionam os softwares e plataformas utilizados.</li>
+                <li><strong>Infraestrutura Básica:</strong> Aprofundamento nas bases tecnológicas que sustentam nossas operações.</li>
+                <li><strong>Equipamentos e Dispositivos:</strong> Conhecimento prático sobre computadores, celulares, sistemas específicos e dispositivos de tecnologia em geral.</li>
+                <li><strong>Triagem e Identificação de Problemas:</strong> Desenvolvimento de habilidades críticas para diagnosticar e resolver questões de suporte e atendimento.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-blue-700 mb-4">3. A Arte do Atendimento de Qualidade:</h3>
+            <ul class="list-disc list-inside text-gray-700 mb-6 ml-6 space-y-2">
+                <li><strong>Passo a Passo de Atendimento:</strong> Aprenderá a metodologia para um atendimento eficaz e satisfatório.</li>
+                <li><strong>Scripts de Atendimento:</strong> Familiarização com as melhores práticas de comunicação para diferentes cenários.</li>
+                <li><strong>Atendimento ao Cliente:</strong> Experiência no contato direto com nossos clientes, seja presencial ou remoto.</li>
+                <li><strong>Comunicação Interna:</strong> Compreensão da dinâmica de comunicação com equipes internas e grupos de colaboração.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold text-blue-700 mb-4">4. Período Rotativo nos Setores: Uma Visão 360º</h3>
+            <p class="text-gray-700 mb-6 ml-6 leading-relaxed">
+                Você terá a oportunidade de vivenciar a rotina em diferentes setores: Administrativo, Atendimento ao Cliente, Logística e T.I. Esta rotação proporciona uma visão abrangente e integrada de todas as operações da Empresa, preparando você para diversos desafios.
+            </p>
+            
+            <h3 class="text-2xl font-semibold text-blue-700 mb-4">Opções para Aprofundamento (Opcional):</h3>
+            <ul class="list-disc list-inside text-gray-700 mb-6 ml-6 space-y-2">
+                <li><strong>Organização de Dados:</strong> Aprimoramento de habilidades essenciais.</li>
+                <li><strong>Processos Específicos:</strong> Processos internos de ativação ou gestão de projetos.</li>
+                <li><strong>Conceitos de Rede:</strong> Conhecimento prático em infraestrutura básica de rede.</li>
+                <li><strong>Ferramentas de Gestão:</strong> Introdução e operação de ambientes de gerenciamento de projetos ou dados.</li>
+                <li><strong>Introdução ao Monitoramento:</strong> Ferramentas gerais para acompanhar a performance operacional.</li>
+            </ul>
+        </section>
+
+        <!-- Seção de Conclusão -->
+        <section id="conclusao" class="card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Conclusão: Sua Jornada aqui na Empresa!</h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">
+                Este material foi preparado para lhe dar uma base sólida sobre a <strong>Empresa</strong>, sua cultura, operações e as oportunidades de aprendizado que você terá. Queremos que seu tempo conosco seja uma experiência enriquecedora e que você se sinta parte fundamental da nossa equipe desde o primeiro dia.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Seu crescimento é o nosso crescimento. Esteja sempre aberto(a) a aprender, a perguntar e a contribuir. A equipe <strong>da Empresa</strong> está aqui para te apoiar em cada passo desta jornada. Bem-vindo(a) ao time!
+            </p>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="text-center text-gray-600 mt-12 py-6 border-t border-gray-300">
+			<p>&copy; 2025 - Francisleudo Silva. Todos os direitos reservados.</p>
+			<p class="text-sm mt-2">Autor: <a href="https://www.linkedin.com/in/francisleudo-silva-a9ba16237/">Francisleudo Silva</a> | <a href="https://www.linkedin.com/in/brendo-eloy-142773204/">Brendo Eloy</a></p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Função para mostrar a caixa de mensagem personalizada
+        function showMessageBox(message) {
+            const messageBox = document.getElementById('custom-message-box');
+            const messageText = document.getElementById('message-text');
+            const messageOkButton = document.getElementById('message-ok-button');
+
+            messageText.textContent = message;
+            messageBox.style.display = 'block';
+
+            // Adiciona um listener para fechar a caixa quando o OK for clicado
+            messageOkButton.onclick = () => {
+                messageBox.style.display = 'none';
+            };
+        }
+
+        // Simula um pequeno atraso para o carregamento do conteúdo e oculta o indicador
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('loading-indicator').style.display = 'none';
+            }, 1000); // Oculta após 1 segundo
+        };
+    </script>
+</body>
+</html>
